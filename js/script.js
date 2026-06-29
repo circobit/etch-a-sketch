@@ -1,5 +1,13 @@
 // Get body
 const body = document.querySelector("body");
+body.style.gap = "2rem";
+body.style.display = "flex";
+body.style.flexDirection = "column";
+body.style.alignItems = "center";
+body.style.justifyContent = "center";
+body.style.minHeight = "100vh";
+body.style.backgroundColor = "rgb(205, 235, 114)";
+body.style.fontFamily = "Cabin Sketch, Roboto";
 
 // Set vars to track numbers of rows and cols
 const rows = 16;
