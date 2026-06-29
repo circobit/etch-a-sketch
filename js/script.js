@@ -52,3 +52,27 @@ for (let i = 0; i < rows; i++) {
 	divToCreate.style.flex = "1";
 	gridDiv.appendChild(divToCreate);
 };
+
+// Get rows divs
+const rowsDivs = document.querySelectorAll(".divRow");
+// Convert to array to be able to use the forEach method
+const rowsDivsArray = [...rowsDivs]
+
+// Create divs that imitates columns within the rows
+rowsDivsArray.forEach(element => {
+	// Iterate over the rows and create the divs inside (Items)
+	for (let i = 0; i < columns; i++) {
+		const divToCreate = document.createElement("div");
+		divToCreate.className = "divItem";
+		divToCreate.style.flex = "1";
+		// border-box: The width and height properties include the content, 
+		// padding, and border, but do not include the margin.
+		// Note: It is often useful to set box-sizing to border-box to lay out 
+		// elements. This makes dealing with the sizes of elements much easier, 
+		// and generally eliminates a number of pitfalls you can stumble on while 
+		// laying out your content.
+		// Ref: https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/box-sizing
+		divToCreate.style.boxSizing = "border-box";
+		element.appendChild(divToCreate);
+	};
+});
