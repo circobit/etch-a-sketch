@@ -40,6 +40,12 @@ gridDiv.style.height = "600px";
 gridDiv.style.display = "flex";
 gridDiv.style.flexDirection = "column";
 gridDiv.style.flexShrink = "0";
+gridDiv.style.border = "2px solid";
+// border-radius: [horizontal] / [vertical]
+// Inside each grounp, the values go in this order:
+// top-left   top-right   bottom-right   bottom-left
+// The objective is to create irregular corners to resemble a hand drawing
+gridDiv.style.borderRadius = "255px 10px 155px 10px / 10px 255px 10px 255px";
 
 // Append gridDiv to body
 body.appendChild(gridDiv);
