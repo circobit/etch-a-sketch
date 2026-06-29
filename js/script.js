@@ -19,7 +19,6 @@ titleDiv.className = "titleDiv";
 titleDiv.textContent = "Etch-A-Sketch";
 titleDiv.style.fontSize = "45px";
 titleDiv.style.fontWeight = "700";
-
 // Append titleDiv to body
 body.appendChild(titleDiv);
 
@@ -28,9 +27,13 @@ const descriptionDiv = document.createElement("div");
 descriptionDiv.className = "titleDiv";
 descriptionDiv.textContent = "Move your mouse over the canvas to draw something";
 descriptionDiv.style.fontSize = "20px";
-
 // Append descriptionDiv to body
 body.appendChild(descriptionDiv);
+
+// Create borderDiv for gridDiv
+const borderDiv = document.createElement("div");
+// Append borderDiv to body
+body.appendChild(borderDiv);
 
 // Create grid div
 const gridDiv = document.createElement("div");
@@ -41,14 +44,14 @@ gridDiv.style.display = "flex";
 gridDiv.style.flexDirection = "column";
 gridDiv.style.flexShrink = "0";
 gridDiv.style.border = "2px solid";
+gridDiv.style.padding = "1rem";
 // border-radius: [horizontal] / [vertical]
 // Inside each grounp, the values go in this order:
 // top-left   top-right   bottom-right   bottom-left
 // The objective is to create irregular corners to resemble a hand drawing
 gridDiv.style.borderRadius = "255px 10px 155px 10px / 10px 255px 10px 255px";
-
 // Append gridDiv to body
-body.appendChild(gridDiv);
+borderDiv.appendChild(gridDiv);
 
 // Create rows within gridDiv
 for (let i = 0; i < rows; i++) {
@@ -79,6 +82,23 @@ rowsDivsArray.forEach(element => {
 		// laying out your content.
 		// Ref: https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/box-sizing
 		divToCreate.style.boxSizing = "border-box";
+		// Add oppacity = 0 to each divItem. If it's not set, it cannot be changed.
+		divToCreate.style.backgroundColor = "black";
+		divToCreate.style.opacity = "0";
 		element.appendChild(divToCreate);
+	};
+});
+
+// Get divItems
+const divItems = document.querySelectorAll(".divItem");
+// Convert to array to be able to use the forEach method
+const divItemsArray = [...divItems]
+
+// Iterate over the divItems and add an anonymous function to increase
+// oppacity by 10% each time the mouseover occurs
+divItemsArray.forEach(element => {
+	// Iterate over the rows and create the divs inside (Items)
+	element.onmouseover = function() {
+		element.style.opacity = parseFloat(element.style.opacity) + 0.1;
 	};
 });
