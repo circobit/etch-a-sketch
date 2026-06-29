@@ -9,9 +9,11 @@ body.style.minHeight = "100vh";
 body.style.backgroundColor = "rgb(205, 235, 114)";
 body.style.fontFamily = "Cabin Sketch, Roboto";
 
+
 // Set vars to track numbers of rows and cols
 const rows = 16;
 const columns = 16;
+
 
 // Create title div
 const titleDiv = document.createElement("div");
@@ -22,6 +24,7 @@ titleDiv.style.fontWeight = "700";
 // Append titleDiv to body
 body.appendChild(titleDiv);
 
+
 // Create description div
 const descriptionDiv = document.createElement("div");
 descriptionDiv.className = "titleDiv";
@@ -30,10 +33,12 @@ descriptionDiv.style.fontSize = "20px";
 // Append descriptionDiv to body
 body.appendChild(descriptionDiv);
 
+
 // Create borderDiv for gridDiv
 const borderDiv = document.createElement("div");
 // Append borderDiv to body
 body.appendChild(borderDiv);
+
 
 // Create grid div
 const gridDiv = document.createElement("div");
@@ -53,6 +58,7 @@ gridDiv.style.borderRadius = "255px 10px 155px 10px / 10px 255px 10px 255px";
 // Append gridDiv to body
 borderDiv.appendChild(gridDiv);
 
+
 // Create rows within gridDiv
 for (let i = 0; i < rows; i++) {
 	const divToCreate = document.createElement("div");
@@ -62,10 +68,12 @@ for (let i = 0; i < rows; i++) {
 	gridDiv.appendChild(divToCreate);
 };
 
+
 // Get rows divs
 const rowsDivs = document.querySelectorAll(".divRow");
 // Convert to array to be able to use the forEach method
 const rowsDivsArray = [...rowsDivs]
+
 
 // Create divs that imitates columns within the rows
 rowsDivsArray.forEach(element => {
@@ -89,16 +97,74 @@ rowsDivsArray.forEach(element => {
 	};
 });
 
+
 // Get divItems
 const divItems = document.querySelectorAll(".divItem");
 // Convert to array to be able to use the forEach method
 const divItemsArray = [...divItems]
 
+
 // Iterate over the divItems and add an anonymous function to increase
 // oppacity by 10% each time the mouseover occurs
 divItemsArray.forEach(element => {
-	// Iterate over the rows and create the divs inside (Items)
 	element.onmouseover = function() {
+		// parseFloat() is used becase the value of opacity
+		// is a string, so we need to convertid to float number
 		element.style.opacity = parseFloat(element.style.opacity) + 0.1;
 	};
 });
+
+
+// Add gridSizeDiv
+const gridSizeDiv = document.createElement("div");
+// Append gridSizeDiv to body
+body.appendChild(gridSizeDiv);
+gridSizeDiv.style.display = "flex";
+gridSizeDiv.style.gap = "1rem";
+
+
+// Create "Grid size" text, input and button divs
+const gridSizeTextDiv = document.createElement("div");
+const gridSizeInputDiv = document.createElement("div");
+gridSizeInputDiv.style.display = "flex";
+gridSizeInputDiv.style.flexDirection = "column";
+gridSizeInputDiv.style.justifyContent = "center";
+const gridSizeButtonDiv = document.createElement("div");
+gridSizeButtonDiv.style.display = "flex";
+gridSizeButtonDiv.style.flexDirection = "column";
+gridSizeButtonDiv.style.justifyContent = "center";
+
+
+// Append "Grid size" text, input and button divs to gridSizeDiv
+gridSizeDiv.appendChild(gridSizeTextDiv);
+gridSizeDiv.appendChild(gridSizeInputDiv);
+gridSizeDiv.appendChild(gridSizeButtonDiv);
+
+
+// Add content to "Grid size" text, input and button divs
+const textGridSize = document.createElement("p");
+textGridSize.textContent = "Grid size:"
+
+const gridSizeInput = document.createElement("input");
+gridSizeInput.type = "number";
+gridSizeInput.min = "1";
+gridSizeInput.max = "100";
+gridSizeInput.style.backgroundColor = "rgb(205, 235, 114)";
+gridSizeInput.style.border = "0";
+gridSizeInput.style.outline = "0";
+gridSizeInput.style.borderBottom = "1px solid black";
+gridSizeInput.style.fontFamily = "Cabin Sketch, Roboto";
+
+const gridSizeButton = document.createElement("button");
+gridSizeButton.textContent = "Apply";
+gridSizeButton.style.fontFamily = "Cabin Sketch, Roboto";
+gridSizeButton.style.backgroundColor = "rgb(205, 235, 114)";
+gridSizeButton.style.padding = "0.5rem";
+gridSizeButton.style.border = "2px solid";
+gridSizeButton.style.borderRadius = "255px 10px 155px 10px / 10px 255px 10px 255px";
+
+
+//Append content to "Grid size" text, input and button divs
+gridSizeTextDiv.appendChild(textGridSize);
+gridSizeInputDiv.appendChild(gridSizeInput);
+gridSizeButtonDiv.appendChild(gridSizeButton);
