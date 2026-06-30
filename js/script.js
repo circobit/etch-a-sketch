@@ -10,10 +10,6 @@ body.style.backgroundColor = "rgb(205, 235, 114)";
 body.style.fontFamily = "Cabin Sketch, Roboto";
 
 
-// Set vars to track numbers of rows and cols
-// const gridSize = 16;
-
-
 // Create title div
 const titleDiv = document.createElement("div");
 titleDiv.className = "titleDiv";
