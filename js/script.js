@@ -4,10 +4,20 @@ body.style.gap = "1rem";
 body.style.display = "flex";
 body.style.flexDirection = "column";
 body.style.alignItems = "center";
-body.style.justifyContent = "center";
+body.style.justifyContent = "space-around";
 body.style.minHeight = "100vh";
 body.style.backgroundColor = "rgb(205, 235, 114)";
 body.style.fontFamily = "Cabin Sketch, Roboto";
+
+
+// Create titleAndDescriptionDiv
+const titleAndDescriptionDiv = document.createElement("div");
+titleAndDescriptionDiv.className = "titleAndDescriptionDiv";
+titleAndDescriptionDiv.style.display = "flex";
+titleAndDescriptionDiv.style.flexDirection = "column";
+titleAndDescriptionDiv.style.alignItems = "center";
+// Append titleAndDescriptionDiv to body
+body.appendChild(titleAndDescriptionDiv);
 
 
 // Create title div
@@ -17,23 +27,33 @@ titleDiv.textContent = "Etch-A-Sketch";
 titleDiv.style.fontSize = "45px";
 titleDiv.style.fontWeight = "700";
 // Append titleDiv to body
-body.appendChild(titleDiv);
+titleAndDescriptionDiv.appendChild(titleDiv);
 
 
 // Create description div
 const descriptionDiv = document.createElement("div");
-descriptionDiv.className = "titleDiv";
+descriptionDiv.className = "descriptionDiv";
 descriptionDiv.textContent = "Move your mouse over the canvas to draw something";
 descriptionDiv.style.fontSize = "20px";
 descriptionDiv.style.paddingBottom = "1rem";
 // Append descriptionDiv to body
-body.appendChild(descriptionDiv);
+titleAndDescriptionDiv.appendChild(descriptionDiv);
+
+
+// Create canvasWithOptionsDiv
+const canvasWithOptionsDiv = document.createElement("div");
+canvasWithOptionsDiv.className = "canvasWithOptionsDiv";
+canvasWithOptionsDiv.style.display = "flex";
+canvasWithOptionsDiv.style.flexDirection = "column";
+canvasWithOptionsDiv.style.gap = "0.5rem";
+body.appendChild(canvasWithOptionsDiv);
 
 
 // Create borderDiv for gridDiv
 const borderDiv = document.createElement("div");
+borderDiv.className = "borderDiv";
 // Append borderDiv to body
-body.appendChild(borderDiv);
+canvasWithOptionsDiv.appendChild(borderDiv);
 
 
 //==== Create grid using Flexbox ====//
@@ -137,7 +157,9 @@ function enableOpacityForGrid() {
 // Add gridSizeDiv
 const gridSizeDiv = document.createElement("div");
 // Append gridSizeDiv to body
-body.appendChild(gridSizeDiv);
+gridSizeDiv.className = "gridSizeDiv";
+gridSizeDiv.style.justifyContent = "center";
+canvasWithOptionsDiv.appendChild(gridSizeDiv);
 gridSizeDiv.style.display = "flex";
 gridSizeDiv.style.gap = "1rem";
 
@@ -257,14 +279,15 @@ function setBlackColorInGridItems () {
 
 // Div and button to randomize colors
 const randomizeColorsDiv = document.createElement("div");
+randomizeColorsDiv.className = "randomizeColorsDiv";
 randomizeColorsDiv.style.display = "flex";
 randomizeColorsDiv.style.gap = "1rem";
-randomizeColorsDiv.style.paddingTop = "0.5rem";
-body.appendChild(randomizeColorsDiv);
+canvasWithOptionsDiv.appendChild(randomizeColorsDiv);
 
 const randomizeColorsText = document.createElement("div");
 randomizeColorsText.textContent = "Randomize Colors:";
 randomizeColorsDiv.appendChild(randomizeColorsText);
+randomizeColorsDiv.style.justifyContent = "center";
 randomizeColorsDiv.style.alignItems = "center";
 
 const randomizeColorsButton = document.createElement("button");
@@ -299,6 +322,17 @@ randomizeColorsButton.addEventListener('click', () => {
 		setRandomColorsInGridItems();
 	};
 });
+
+//=======================//
+
+
+//==== Add footer ====//
+
+const footerDiv = document.createElement("div");
+body.appendChild(footerDiv);
+
+const htmlTextFooter = `Made with <span>&#128154;</span> and <span>&#129481;</span> by <a href="https://github.com/circobit" target="_blank">circobit`
+footerDiv.innerHTML = htmlTextFooter;
 
 //=======================//
 
