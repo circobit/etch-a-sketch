@@ -260,6 +260,7 @@ randomizeColorsButton.style.padding = "0.5rem";
 randomizeColorsButton.style.border = "2px solid";
 randomizeColorsButton.style.borderRadius = "255px 10px 155px 10px / 10px 255px 10px 255px";
 randomizeColorsButton.style.cursor = "pointer";
+randomizeColorsButton.style.width = "3rem";
 
 // Add event listener to hightlight 'Randomize Colors' button
 randomizeColorsButton.addEventListener('mouseover', () => {
