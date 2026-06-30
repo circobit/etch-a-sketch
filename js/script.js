@@ -240,6 +240,18 @@ function setRandomColorsInGridItems () {
 	})
 };
 
+// Function to restore items colors back to black
+function setBlackColorInGridItems () {
+	// Get divItems
+	const divItems = document.querySelectorAll(".divItem");
+	// Convert to array to be able to use the forEach method
+	const divItemsArray = [...divItems]
+	// Apply colors in existing
+	divItemsArray.forEach(element => {
+		element.style.backgroundColor = "black";
+	})
+};
+
 // Div and button to randomize colors
 const randomizeColorsDiv = document.createElement("div");
 randomizeColorsDiv.style.display = "flex";
