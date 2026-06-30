@@ -82,7 +82,7 @@ function renderGrid(gridSize = 16) {
 	// Create divs that imitates columns within the rows
 	rowsDivsArray.forEach(element => {
 		// Iterate over the rows and create the divs inside (Items)
-		for (let i = 0; i < gridSize; i++) {
+		for (let i = 0; i < rowsDivsArray.length; i++) {
 			const divToCreate = document.createElement("div");
 			divToCreate.className = "divItem";
 			divToCreate.style.flex = "1";
