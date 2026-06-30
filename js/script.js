@@ -271,7 +271,8 @@ randomizeColorsDiv.appendChild(randomizeColorsText);
 randomizeColorsDiv.style.alignItems = "center";
 
 const randomizeColorsButton = document.createElement("button");
-randomizeColorsButton.textContent = "ON";
+randomizeColorsButton.className = "randomizeColorsBtn";
+randomizeColorsButton.textContent = "OFF";
 randomizeColorsDiv.appendChild(randomizeColorsButton);
 randomizeColorsButton.style.backgroundColor = "rgb(205, 235, 114)";
 randomizeColorsButton.style.padding = "0.5rem";
