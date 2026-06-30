@@ -1,6 +1,6 @@
 // Get body
 const body = document.querySelector("body");
-body.style.gap = "2rem";
+body.style.gap = "1rem";
 body.style.display = "flex";
 body.style.flexDirection = "column";
 body.style.alignItems = "center";
@@ -29,6 +29,7 @@ const descriptionDiv = document.createElement("div");
 descriptionDiv.className = "titleDiv";
 descriptionDiv.textContent = "Move your mouse over the canvas to draw something";
 descriptionDiv.style.fontSize = "20px";
+descriptionDiv.style.paddingBottom = "1rem";
 // Append descriptionDiv to body
 body.appendChild(descriptionDiv);
 
@@ -205,7 +206,7 @@ gridSizeButton.addEventListener('mouseout', () => {
 // validate the input and 
 gridSizeButton.addEventListener('click', () => {
 	const gridInput = document.querySelector("input");
-	if (gridInput.value > 0 && gridInput.value <= 100) {
+	if (gridInput.value >= 1 && gridInput.value <= 100) {
 		borderDiv.replaceChildren();
 		renderGrid(gridInput.value);
 	};
