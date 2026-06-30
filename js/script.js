@@ -11,8 +11,7 @@ body.style.fontFamily = "Cabin Sketch, Roboto";
 
 
 // Set vars to track numbers of rows and cols
-const rows = 16;
-const columns = 16;
+// const gridSize = 16;
 
 
 // Create title div
@@ -40,79 +39,98 @@ const borderDiv = document.createElement("div");
 body.appendChild(borderDiv);
 
 
-// Create grid div
-const gridDiv = document.createElement("div");
-gridDiv.className = "gridDiv";
-gridDiv.style.width = "600px";
-gridDiv.style.height = "600px";
-gridDiv.style.display = "flex";
-gridDiv.style.flexDirection = "column";
-gridDiv.style.flexShrink = "0";
-gridDiv.style.border = "2px solid";
-gridDiv.style.padding = "1rem";
-// border-radius: [horizontal] / [vertical]
-// Inside each grounp, the values go in this order:
-// top-left   top-right   bottom-right   bottom-left
-// The objective is to create irregular corners to resemble a hand drawing
-gridDiv.style.borderRadius = "255px 10px 155px 10px / 10px 255px 10px 255px";
-// Append gridDiv to body
-borderDiv.appendChild(gridDiv);
+//==== Create grid using Flexbox ====//
+
+function renderGrid(gridSize = 16) {
+
+	// Create grid div
+	const gridDiv = document.createElement("div");
+	gridDiv.className = "gridDiv";
+	gridDiv.style.width = "600px";
+	gridDiv.style.height = "600px";
+	gridDiv.style.display = "flex";
+	gridDiv.style.flexDirection = "column";
+	gridDiv.style.flexShrink = "0";
+	gridDiv.style.border = "2px solid";
+	gridDiv.style.padding = "1rem";
+	// border-radius: [horizontal] / [vertical]
+	// Inside each grounp, the values go in this order:
+	// top-left   top-right   bottom-right   bottom-left
+	// The objective is to create irregular corners to resemble a hand drawing
+	gridDiv.style.borderRadius = "255px 10px 155px 10px / 10px 255px 10px 255px";
+	// Append gridDiv to body
+	borderDiv.appendChild(gridDiv);
 
 
-// Create rows within gridDiv
-for (let i = 0; i < rows; i++) {
-	const divToCreate = document.createElement("div");
-	divToCreate.className = "divRow";
-	divToCreate.style.display = "flex";
-	divToCreate.style.flex = "1";
-	gridDiv.appendChild(divToCreate);
+	// Create rows within gridDiv
+	for (let i = 0; i < gridSize; i++) {
+		const divToCreate = document.createElement("div");
+		divToCreate.className = "divRow";
+		divToCreate.style.display = "flex";
+		divToCreate.style.flex = "1";
+		gridDiv.appendChild(divToCreate);
+	};
+
+
+	// Get rows divs
+	const rowsDivs = document.querySelectorAll(".divRow");
+	// Convert to array to be able to use the forEach method
+	const rowsDivsArray = [...rowsDivs]
+
+
+	// Create divs that imitates columns within the rows
+	rowsDivsArray.forEach(element => {
+		// Iterate over the rows and create the divs inside (Items)
+		for (let i = 0; i < gridSize; i++) {
+			const divToCreate = document.createElement("div");
+			divToCreate.className = "divItem";
+			divToCreate.style.flex = "1";
+			// border-box: The width and height properties include the content, 
+			// padding, and border, but do not include the margin.
+			// Note: It is often useful to set box-sizing to border-box to lay out 
+			// elements. This makes dealing with the sizes of elements much easier, 
+			// and generally eliminates a number of pitfalls you can stumble on while 
+			// laying out your content.
+			// Ref: https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/box-sizing
+			divToCreate.style.boxSizing = "border-box";
+			// Add oppacity = 0 to each divItem. If it's not set, it cannot be changed.
+			divToCreate.style.backgroundColor = "black";
+			divToCreate.style.opacity = "0";
+			element.appendChild(divToCreate);
+		};
+	});
+
+	enableOpacityForGrid();
+
 };
 
+// Create basic grid 16x16 at first load
+renderGrid();
 
-// Get rows divs
-const rowsDivs = document.querySelectorAll(".divRow");
-// Convert to array to be able to use the forEach method
-const rowsDivsArray = [...rowsDivs]
-
-
-// Create divs that imitates columns within the rows
-rowsDivsArray.forEach(element => {
-	// Iterate over the rows and create the divs inside (Items)
-	for (let i = 0; i < columns; i++) {
-		const divToCreate = document.createElement("div");
-		divToCreate.className = "divItem";
-		divToCreate.style.flex = "1";
-		// border-box: The width and height properties include the content, 
-		// padding, and border, but do not include the margin.
-		// Note: It is often useful to set box-sizing to border-box to lay out 
-		// elements. This makes dealing with the sizes of elements much easier, 
-		// and generally eliminates a number of pitfalls you can stumble on while 
-		// laying out your content.
-		// Ref: https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/box-sizing
-		divToCreate.style.boxSizing = "border-box";
-		// Add oppacity = 0 to each divItem. If it's not set, it cannot be changed.
-		divToCreate.style.backgroundColor = "black";
-		divToCreate.style.opacity = "0";
-		element.appendChild(divToCreate);
-	};
-});
+//=======================//
 
 
-// Get divItems
-const divItems = document.querySelectorAll(".divItem");
-// Convert to array to be able to use the forEach method
-const divItemsArray = [...divItems]
+//==== Logic to increase oppacity in items by 10% with mouseover ====//
+
+function enableOpacityForGrid() {
+	// Get divItems
+	const divItems = document.querySelectorAll(".divItem");
+	// Convert to array to be able to use the forEach method
+	const divItemsArray = [...divItems]
 
 
-// Iterate over the divItems and add an anonymous function to increase
-// oppacity by 10% each time the mouseover occurs
-divItemsArray.forEach(element => {
-	element.onmouseover = function() {
-		// parseFloat() is used becase the value of opacity
-		// is a string, so we need to convertid to float number
-		element.style.opacity = parseFloat(element.style.opacity) + 0.1;
-	};
-});
+	// Iterate over the divItems and add an anonymous function to increase
+	// oppacity by 10% each time the mouseover occurs
+	divItemsArray.forEach(element => {
+		element.onmouseover = function() {
+			// parseFloat() is used becase the value of opacity
+			// is a string, so we need to convertid to float number
+			element.style.opacity = parseFloat(element.style.opacity) + 0.1;
+		};
+	});
+};
+
+//=======================//
 
 
 // Add gridSizeDiv
@@ -180,4 +198,17 @@ gridSizeButton.addEventListener('mouseover', () => {
 gridSizeButton.addEventListener('mouseout', () => {
 	gridSizeButton.style.backgroundColor = "rgb(205, 235, 114)";
 	gridSizeButton.style.color = "black";
+});
+
+
+// Add an event listener to take the input when the 'Apply' button is pressed,
+// validate the input and 
+gridSizeButton.addEventListener('click', () => {
+	const gridInput = document.querySelector("input");
+	if (gridInput.value > 0 && gridInput.value <= 100) {
+		borderDiv.replaceChildren();
+		renderGrid(gridInput.value);
+	};
+	// Clear input value
+	gridInput.value = "";
 });
