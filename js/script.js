@@ -133,6 +133,7 @@ function enableOpacityForGrid() {
 
 //=======================//
 
+//==== Set grid size ====//
 
 // Add gridSizeDiv
 const gridSizeDiv = document.createElement("div");
@@ -213,3 +214,21 @@ gridSizeButton.addEventListener('click', () => {
 	// Clear input value
 	gridInput.value = "";
 });
+
+//=======================//
+
+
+//==== Randomize colors ====//
+
+// Function to pick random rgb colors
+// Example of expected output: rgb(205, 235, 114)
+function pickRandomRGBColor () {
+	// Define random values using Math.floor and Math.random
+	const r = Math.floor(Math.random() * 256);
+	const g = Math.floor(Math.random() * 256);
+	const b = Math.floor(Math.random() * 256);
+	// Return color
+	return `rgb(${r}, ${g}, ${b})`;
+};
+
+//=======================//
