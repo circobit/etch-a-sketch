@@ -221,7 +221,7 @@ gridSizeButton.addEventListener('click', () => {
 //==== Randomize colors ====//
 
 // Function to pick random rgb colors
-// Example of expected output: rgb(205, 235, 114)
+// Example of expected output: "rgb(205, 235, 114)"
 function pickRandomRGBColor () {
 	// Define random values using Math.floor and Math.random
 	const r = Math.floor(Math.random() * 256);
@@ -230,5 +230,37 @@ function pickRandomRGBColor () {
 	// Return color
 	return `rgb(${r}, ${g}, ${b})`;
 };
+
+// Div and button to randomize colors
+const randomizeColorsDiv = document.createElement("div");
+randomizeColorsDiv.style.display = "flex";
+randomizeColorsDiv.style.gap = "1rem";
+randomizeColorsDiv.style.paddingTop = "0.5rem";
+body.appendChild(randomizeColorsDiv);
+
+const randomizeColorsText = document.createElement("div");
+randomizeColorsText.textContent = "Randomize Colors:";
+randomizeColorsDiv.appendChild(randomizeColorsText);
+randomizeColorsDiv.style.alignItems = "center";
+
+const randomizeColorsButton = document.createElement("button");
+randomizeColorsButton.textContent = "ON";
+randomizeColorsDiv.appendChild(randomizeColorsButton);
+randomizeColorsButton.style.backgroundColor = "rgb(205, 235, 114)";
+randomizeColorsButton.style.padding = "0.5rem";
+randomizeColorsButton.style.border = "2px solid";
+randomizeColorsButton.style.borderRadius = "255px 10px 155px 10px / 10px 255px 10px 255px";
+randomizeColorsButton.style.cursor = "pointer";
+
+// Add event listener to hightlight 'Randomize Colors' button
+randomizeColorsButton.addEventListener('mouseover', () => {
+	randomizeColorsButton.style.backgroundColor = "grey";
+	randomizeColorsButton.style.color = "white";
+});
+
+randomizeColorsButton.addEventListener('mouseout', () => {
+	randomizeColorsButton.style.backgroundColor = "rgb(205, 235, 114)";
+	randomizeColorsButton.style.color = "black";
+});
 
 //=======================//
