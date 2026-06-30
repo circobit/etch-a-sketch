@@ -91,8 +91,14 @@ function renderGrid(gridSize = 16) {
 			// Ref: https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/box-sizing
 			divToCreate.style.boxSizing = "border-box";
 			// Add oppacity = 0 to each divItem. If it's not set, it cannot be changed.
-			divToCreate.style.backgroundColor = "black";
 			divToCreate.style.opacity = "0";
+			// Check if 'Ramdomize Colors' button is ON or OFF to set backgroundColor
+			const randomizeColorsBtn = document.querySelector(".randomizeColorsBtn");
+			if (randomizeColorsBtn.textContent == "OFF") {
+				divToCreate.style.backgroundColor = "black";
+			} else {
+				divToCreate.style.backgroundColor = pickRandomRGBColor();
+			};
 			element.appendChild(divToCreate);
 		};
 	});
