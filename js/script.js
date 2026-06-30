@@ -107,9 +107,6 @@ function renderGrid(gridSize = 16) {
 
 };
 
-// Create basic grid 16x16 at first load
-renderGrid();
-
 //=======================//
 
 
@@ -292,4 +289,19 @@ randomizeColorsButton.addEventListener('mouseout', () => {
 	randomizeColorsButton.style.color = "black";
 });
 
+// Add event listener to 'Randomize Colors' button
+randomizeColorsButton.addEventListener('click', () => {
+	if (randomizeColorsButton.textContent == "ON") {
+		randomizeColorsButton.textContent = "OFF";
+		setBlackColorInGridItems();
+	} else {
+		randomizeColorsButton.textContent = "ON";
+		setRandomColorsInGridItems();
+	};
+});
+
 //=======================//
+
+
+// Create basic grid 16x16 at first load
+renderGrid();
