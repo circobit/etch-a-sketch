@@ -143,7 +143,7 @@ gridSizeDiv.appendChild(gridSizeButtonDiv);
 
 // Add content to "Grid size" text, input and button divs
 const textGridSize = document.createElement("p");
-textGridSize.textContent = "Grid size:"
+textGridSize.textContent = "Grid size (Max 100):"
 
 const gridSizeInput = document.createElement("input");
 gridSizeInput.type = "number";
@@ -162,9 +162,22 @@ gridSizeButton.style.backgroundColor = "rgb(205, 235, 114)";
 gridSizeButton.style.padding = "0.5rem";
 gridSizeButton.style.border = "2px solid";
 gridSizeButton.style.borderRadius = "255px 10px 155px 10px / 10px 255px 10px 255px";
+gridSizeButton.style.cursor = "pointer";
 
 
 //Append content to "Grid size" text, input and button divs
 gridSizeTextDiv.appendChild(textGridSize);
 gridSizeInputDiv.appendChild(gridSizeInput);
 gridSizeButtonDiv.appendChild(gridSizeButton);
+
+
+// Add event listener to hightlight Apply button
+gridSizeButton.addEventListener('mouseover', () => {
+	gridSizeButton.style.backgroundColor = "grey";
+	gridSizeButton.style.color = "white";
+});
+
+gridSizeButton.addEventListener('mouseout', () => {
+	gridSizeButton.style.backgroundColor = "rgb(205, 235, 114)";
+	gridSizeButton.style.color = "black";
+});
