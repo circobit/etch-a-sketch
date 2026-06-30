@@ -227,6 +227,19 @@ function pickRandomRGBColor () {
 	return `rgb(${r}, ${g}, ${b})`;
 };
 
+// Function to set random colors of the current grid items
+function setRandomColorsInGridItems () {
+	// Get divItems
+	const divItems = document.querySelectorAll(".divItem");
+	// Convert to array to be able to use the forEach method
+	const divItemsArray = [...divItems]
+	// Apply colors in existing
+	divItemsArray.forEach(element => {
+		const randomColor = pickRandomRGBColor();
+		element.style.backgroundColor = randomColor;
+	})
+};
+
 // Div and button to randomize colors
 const randomizeColorsDiv = document.createElement("div");
 randomizeColorsDiv.style.display = "flex";
